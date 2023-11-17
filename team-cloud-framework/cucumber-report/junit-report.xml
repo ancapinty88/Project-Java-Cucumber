@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.835">
+    <testcase classname="User Story 4 Feature" name="Scenario 1" time="9.712">
+        <system-out><![CDATA[When I am on Home Page......................................................passed
+Then I click on My Account..................................................passed
+]]></system-out>
+    </testcase>
+</testsuite>
