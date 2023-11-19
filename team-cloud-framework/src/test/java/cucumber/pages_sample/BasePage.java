@@ -1,6 +1,7 @@
 package cucumber.pages_sample;
 
 import cucumber.stepDefinitions.Hooks;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -93,7 +94,26 @@ public class BasePage {
 
     protected void clickElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+
     }
+
+//    public boolean isElementDisplayed(){
+//        return driver.findElement().isDisplayed();
+//    }
+//
+//    public void clickOnSearchBar(){
+//        clickOnSearchBar();
+//    }
+//    public void isSearchBarDisplayed(){
+//        clickOnSearchBar();
+//    }
+//
+//    public void clickOnSearchButton(){
+//        clickOnSearchBar();
+//    }
+//    public void isSearchButtonDisplayed(){
+//        clickOnSearchButton();
+//    }
+
 
 }
