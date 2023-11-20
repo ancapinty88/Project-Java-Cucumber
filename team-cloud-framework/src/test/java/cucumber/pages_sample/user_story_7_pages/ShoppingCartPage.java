@@ -6,21 +6,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class SearchPage extends BasePage {
+import static utils.SeleniumHelper.clickElement;
 
+public class ShoppingCartPage extends BasePage {
+
+    public String getShoppingCartPageUrl(){
+        return "https://www.demoshop24.com/index.php?route=checkout/cart";
+    }
     @FindBy(how = How.ID, using = "search")
     private WebElement searchBar;
 
-    public SearchPage(WebDriver driver){
-        super(driver);
+    @FindBy(how = How.CLASS_NAME, using = "fa-search")
+    private WebElement searchButton;
 
-        this.searchBar = searchBar;
+
+    public ShoppingCartPage(WebDriver driver){
+        super(driver);
     }
 
     public void clickOnSearchBar(){
         clickElement(searchBar);
+
     }
-    public boolean isSearchBarDisplayed(){
-        return isSearchBarDisplayed();
-    }
+
+
+
 }
+
+
