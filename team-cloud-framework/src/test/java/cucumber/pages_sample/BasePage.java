@@ -13,6 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.SeleniumHelper;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.awt.SystemColor.text;
@@ -52,12 +55,17 @@ public class BasePage {
 
     }
 
-
-    @FindBy(how = How.ID, using = "search")
+    @FindBy(xpath = "//input[@name='search']")
     private WebElement searchBar;
+
+
+
 
     @FindBy(how = How.CLASS_NAME, using = "fa-search")
     private WebElement searchButton;
+
+    @FindBy(how = How.ID, using = "button-search")
+    private WebElement buttonSearch;
 
     @FindBy(how = How.NAME, using = "description")
     private WebElement searchProductDescription;
@@ -74,8 +82,8 @@ public class BasePage {
     @FindBy(xpath = "//a[contains(text(),'iph')]")
     private WebElement textIph;
 
-    @FindBy(how = How.ID, using = "input-sort")
-    private WebElement sortBy;
+    @FindBy(xpath = "//select[@class='form-control']")
+    private List<WebElement> dropdown;
 
     @FindBy(how = How.ID, using = "input-limit")
     private WebElement showProducts;
@@ -83,14 +91,31 @@ public class BasePage {
     @FindBy(how = How.NAME, using = "category_id")
     private WebElement categoryDropdown;
 
+    @FindBy(css = "#input-sort > option:nth-child(4)")
+    private WebElement option4Dropdown;
 
-    public void SearchBar() {
+    public WebElement getSelectedOption(){
+        return option4Dropdown;
+    }
+
+    @FindBy(xpath = "//p[@class='price']")
+    private List<WebElement> resultsPriceOption;
+
+
+
+
+        public void SearchBar() {
         clickElement(searchBar);
         //searchBar.sendKeys(text);
     }
 
     public void clickOnSearchButton(){
         clickElement(searchButton);
+    }
+
+    //search in the page after homepage, second search
+    public void clickOnButtonSearch(){
+        clickElement(buttonSearch);
     }
 
     public void clickSearchCategories(){
@@ -107,13 +132,14 @@ public class BasePage {
 
     public void selectOptionByValue(String value) {
         Select dropdown = new Select(categoryDropdown);
-        dropdown.selectByValue(value);
+        dropdown.selectByVisibleText(value);
     }
 
-    public void sortByByValue(String value){
-        Select dropdown = new Select(sortBy);
-        dropdown.selectByValue(value);
-    }
+//    public void sortByByValue(String value){
+//        WebElement sortByDropdown = dropdown.get(1);
+//        Select dropdown = new Select(sortByDropdown);
+//        dropdown.selectByValue(value);
+//    }
 
     public void showByValue(String value){
         Select dropdown = new Select(showProducts);
@@ -177,10 +203,47 @@ public class BasePage {
 
 
 
+    public void sortResultsByPriceAscending() {
+        // Create a list to store the prices as strings
+        List<String> priceStrings = new ArrayList<>(resultsPriceOption.stream()
+                .map(WebElement::getText)
+                .toList());
+        // Sort the list of price strings in ascending order
+        priceStrings.sort(Comparator.comparingDouble(this::extractPrice));
+
+        // Update the order of WebElement list based on the sorted price strings
+        for (int i = 0; i < resultsPriceOption.size(); i++) {
+            resultsPriceOption.get(i).sendKeys(priceStrings.get(i));
+        }
+
+        }
+
+    private double extractPrice(String priceString) {
+
+        // Remove leading and trailing whitespaces and then try to parse
+        priceString = priceString.trim();
+
+        // Handle the case where the string is empty after trimming
+        if (priceString.isEmpty()) {
+            return 0.0; // or throw an exception, depending on your requirements
+        }
+
+        // Attempt to parse the numeric value
+        try {
+            return Double.parseDouble(priceString.replace("$", ""));
+        } catch (NumberFormatException e) {
+            // Handle the exception or log an error message
+            e.printStackTrace();
+            return 0.0; // or throw an exception, depending on your requirements
+        }
+    }
+
 
 
 
 }
+
+
 
 
 

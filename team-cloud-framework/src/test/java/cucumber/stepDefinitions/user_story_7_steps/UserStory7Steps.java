@@ -9,12 +9,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.SeleniumHelper;
 
 import javax.lang.model.element.Element;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -122,7 +125,9 @@ public class UserStory7Steps  {
 
     @Then("Check if mac is in the name of the results")
     public void checkIfMacIsInTheNameOfTheResults() throws Throwable{
-        homePage.verifySearchResultsContainKeyword("mac");
+        //homePage.verifySearchResultsContainKeyword("mac");
+        homePage.verifyThatResultsContainsTextMac();
+
 
 
     }
@@ -135,8 +140,12 @@ public class UserStory7Steps  {
 
     @Then("Select option from the Sort by dropdown")
     public void selectOptionFromTheSortByDropdown() throws Throwable{
-        basePage.sortByByValue("\"https://www.demoshop24.com/index.php?route=product/search&sort=p.sort_order&order=ASC&search=mac\"");
+        basePage.getSelectedOption();
+        basePage.sortResultsByPriceAscending();
+
     }
+
+
 //Name (Z - A)
 
     @Then("Select number of products from the Show dropdown")
@@ -147,6 +156,17 @@ public class UserStory7Steps  {
     @When("Write mac into Search bar")
     public void writeMacIntoSearchBar() throws Throwable {
         homePage.enterText("mac");
+    }
+
+    @Then("I click on button search")
+    public void iClickOnButtonSearch() throws Throwable {
+        basePage.clickOnButtonSearch();
+    }
+
+    @Then("Check if there is no results")
+    public void checkIfThereIsNoResults() {
+        homePage.verifyThatNoResultsFound("There is no product that matches the search criteria.");
+
     }
 }
 

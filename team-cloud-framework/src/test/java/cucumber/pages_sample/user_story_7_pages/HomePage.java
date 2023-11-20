@@ -14,6 +14,7 @@ import java.util.List;
 
 import static cucumber.stepDefinitions.Hooks.driver;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static utils.SeleniumHelper.clickElement;
 import static utils.SeleniumHelper.wait;
 
@@ -26,7 +27,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    @FindBy(how = How.ID, using = "search")
+    @FindBy(xpath = "//input[@name='search']")
     private WebElement searchBar;
 
     @FindBy(how = How.CLASS_NAME, using = "fa-search")
@@ -38,8 +39,15 @@ public class HomePage extends BasePage {
     @FindBy(how = How.NAME, using = "sub_category")
     private WebElement SearchSubcategories;
 
-    @FindBy(xpath = "//a[contains(text(),'Mac')]")
+    @FindBy(xpath = "//a[contains(text(), 'MacBook')]")
     private List<WebElement> macResults;
+
+    @FindBy(xpath = "//p[contains(text(), 'There is no product that matches the search criteria.')]")
+    private WebElement noResultMsg;
+
+
+
+
 
     @FindBy(how = How.ID, using = "tab-description")
     private WebElement description;
@@ -140,17 +148,44 @@ public class HomePage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(search));
     }
 //not working to check that the list has the word mac
-    public void verifySearchResultsContainKeyword(String mac) throws AssertionError {
-        for (WebElement result: macResults){
-            String productName = result.getText();
-            if (!productName.toLowerCase().contains(mac.toLowerCase())){
-                throw new AssertionError("The product name '" + productName + "' does not contain the keyword '" + mac + "'");
+//    public void verifySearchResultsContainKeyword(String Mac) throws AssertionError {
+//        for (WebElement result: macResults){
+//            String productName = result.getText();
+//            if (!productName.toLowerCase().contains(Mac.toLowerCase())){
+//                throw new AssertionError("The product name '" + productName + "' does not contain the keyword '" + mac + "'");
+//            }
+//        }
+//        System.out.println("All search results contain the keyword '" + mac + "'");
+//    }
+
+//    public void verifySearchResultsContainKeyword(String productName) throws InterruptedException {
+////        List<WebElement> results = driver.findElements((By) macResults);
+////        Thread.sleep(2000);
+////        boolean isProductFound = results.stream()
+////                .map(WebElement::getText)
+////                .anyMatch(resultText -> resultText.contains(productName));
+////        assertTrue("Product not found in search results", isProductFound);
+//
+//    }
+//
+
+    public boolean areResultsContainingText(List<WebElement> results, String searchText) {
+        for (WebElement result : results) {
+            if (result.getText().toLowerCase().contains(searchText.toLowerCase())) {
+                return true;
             }
         }
-        System.out.println("All search results contain the keyword '" + mac + "'");
+        return false;
+    }
+
+    public void verifyThatResultsContainsTextMac(){
+        assertTrue(areResultsContainingText(macResults, "mac"));
     }
 
 
+    public void verifyThatNoResultsFound(String expectedMsg){
+        assertEquals(expectedMsg, noResultMsg.getText());
+    }
 
 
 

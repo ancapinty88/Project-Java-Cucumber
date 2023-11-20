@@ -59,7 +59,7 @@ Feature: User Story 7 Feature
     When I click on search button
     Then Click on Search in product descriptions checkbox
     And Write mac into Search Criteria input
-    Then I click on search button
+    Then I click on button search
     And Check if word mac is in product description
 
   @Test5
@@ -69,7 +69,7 @@ Feature: User Story 7 Feature
     Then Write mac into Search Criteria input
     And Select the parent category from the dropdown field
     And I click on Search in Subcategories checkbox
-    And I click on search button
+    And I click on button search
     Then Check if mac is in the name of the results
 
     @Test6
@@ -79,8 +79,8 @@ Feature: User Story 7 Feature
       Then Write mac into Search Criteria input
       And Select another parent category from the dropdown field
       And I click on Search in Subcategories checkbox
-      And I click on search button
-      Then Check if mac is in the name of the results
+      And I click on button search
+      Then Check if there is no results
 
 
     @Test7
