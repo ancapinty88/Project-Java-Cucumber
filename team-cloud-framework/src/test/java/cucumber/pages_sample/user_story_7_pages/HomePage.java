@@ -42,18 +42,19 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(), 'MacBook')]")
     private List<WebElement> macResults;
 
+    @FindBy(xpath = "//a[contains(text(),'iPhone')]")
+    private List<WebElement> iphResults;
+
     @FindBy(xpath = "//p[contains(text(), 'There is no product that matches the search criteria.')]")
     private WebElement noResultMsg;
-
-
-
-
 
     @FindBy(how = How.ID, using = "tab-description")
     private WebElement description;
 
-    @FindBy(xpath = "//a[contains(text(),'iph')]")
-    private WebElement textIph;
+//    @FindBy(xpath = "//a[contains(text(),'iph')]")
+//    private List<WebElement> textIph;
+
+
 
 
     @FindBy(how = How.ID, using = "input-sort")
@@ -64,9 +65,6 @@ public class HomePage extends BasePage {
 
     @FindBy(how = How.NAME, using = "category_id")
     private WebElement allCategories;
-
-
-
 
 
     //Methods should be here
@@ -85,16 +83,12 @@ public class HomePage extends BasePage {
     }
 
 
-
-
     public void clickOnProductDescription(){
         clickElement(SearchProductDescription);
     }
 
-
     public void clickOnSearchBar(){
         clickElement(searchBar);
-
     }
 
     public void SearchBarIsDisplayed(){
@@ -129,7 +123,7 @@ public class HomePage extends BasePage {
 
 //not working
     public void enterText(String text){
-        searchBar.clear();
+        searchBar.click();
         searchBar.sendKeys(text);
 
         //not working for test3
@@ -180,6 +174,10 @@ public class HomePage extends BasePage {
 
     public void verifyThatResultsContainsTextMac(){
         assertTrue(areResultsContainingText(macResults, "mac"));
+    }
+
+    public void verifyThatResultsContainsTextIph(){
+        assertTrue(areResultsContainingText(iphResults, "iph"));
     }
 
 

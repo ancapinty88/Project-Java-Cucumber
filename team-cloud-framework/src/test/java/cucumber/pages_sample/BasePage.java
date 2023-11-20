@@ -14,11 +14,9 @@ import utils.SeleniumHelper;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static java.awt.SystemColor.text;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utils.SeleniumHelper.*;
@@ -28,26 +26,6 @@ public class BasePage {
     protected WebDriver driver;
     protected SeleniumHelper seleniumHelper;
 
-    @FindBy(xpath = "//span[.='My Account']")
-    private WebElement myAccountMenu;
-
-    @FindBy(xpath = "//a[text()='Login']")
-    private WebElement loginFromMyAccountDropdown;
-
-    @FindBy(xpath = "//a[text()='My Account']")
-    private WebElement myAccountFromMyAccountDropdown;
-
-    @FindBy(xpath = "//span[text()='Shopping Cart']")
-    private WebElement shoppingCart;
-
-    @FindBy(xpath = "//span[@id='cart-total']")
-    private WebElement shoppingCartDropdown;
-
-    @FindBy(xpath = "//p[@class='text-center']")
-    private WebElement shoppingCartIsEmptyMessage;
-
-    @FindBy(xpath = "//button[@title='Remove']")
-    private WebElement removeFromCartButton;
 
     public BasePage(WebDriver driver) {
         this.driver = Hooks.driver;
@@ -57,9 +35,6 @@ public class BasePage {
 
     @FindBy(xpath = "//input[@name='search']")
     private WebElement searchBar;
-
-
-
 
     @FindBy(how = How.CLASS_NAME, using = "fa-search")
     private WebElement searchButton;
@@ -94,17 +69,66 @@ public class BasePage {
     @FindBy(css = "#input-sort > option:nth-child(4)")
     private WebElement option4Dropdown;
 
-    public WebElement getSelectedOption(){
-        return option4Dropdown;
+    @FindBy(how = How.ID, using = "input-sort")
+    private WebElement sortByList;
+
+    @FindBy(css = "#input-limit > option:nth-child(3)")
+    private WebElement optionShow50;
+
+    @FindBy(xpath = "//a[contains(text(),'iPhone')]")
+    private WebElement iphResults;
+
+
+    public void clickOnOptionShow50(){
+        optionShow50.click();
     }
+
+    public void clickOnShowProductList(){
+        showProducts.click();
+    }
+
+    public void clickOnSortByList() {
+        sortByList.click();
+    }
+    public void clickOnOption4Dropdown(){
+        option4Dropdown.click();
+    }
+
+//    public WebElement getSelectedOption(){
+//        return option4Dropdown;
+//    }
 
     @FindBy(xpath = "//p[@class='price']")
     private List<WebElement> resultsPriceOption;
 
+//From other story ->
+//
+//    @FindBy(xpath = "//span[.='My Account']")
+//    private WebElement myAccountMenu;
+//
+//    @FindBy(xpath = "//a[text()='Login']")
+//    private WebElement loginFromMyAccountDropdown;
+//
+//    @FindBy(xpath = "//a[text()='My Account']")
+//    private WebElement myAccountFromMyAccountDropdown;
+//
+//    @FindBy(xpath = "//span[text()='Shopping Cart']")
+//    private WebElement shoppingCart;
+//
+//    @FindBy(xpath = "//span[@id='cart-total']")
+//    private WebElement shoppingCartDropdown;
+//
+//    @FindBy(xpath = "//p[@class='text-center']")
+//    private WebElement shoppingCartIsEmptyMessage;
+//
+//    @FindBy(xpath = "//button[@title='Remove']")
+//    private WebElement removeFromCartButton;
+//From other story <-
 
 
 
-        public void SearchBar() {
+
+    public void SearchBar() {
         clickElement(searchBar);
         //searchBar.sendKeys(text);
     }
@@ -146,82 +170,38 @@ public class BasePage {
         dropdown.selectByValue(value);
     }
 
-    public void clickOnMyAccount() {
-        clickElement(myAccountMenu);
-    }
-
-    public void clickOnLoginFromMyAccountDropdown() {
-        clickElement(loginFromMyAccountDropdown);
-    }
-
-    public void verifyThatUserIsLoggedIn() {
-        clickElement(myAccountMenu);
-        waitUntilElementIsVisible(myAccountFromMyAccountDropdown);
-        assertTrue(myAccountFromMyAccountDropdown.isDisplayed());
-    }
-
-    public void clickShoppingCartButton() {
-        clickElement(shoppingCart);
-    }
-
-    public void verifyThatItemsAreAddedToShoppingCart(String expectedText) {
-        waitUntilTextIsPresentInElement(shoppingCartDropdown, expectedText);
-        assertEquals(expectedText, shoppingCartDropdown.getText());
-    }
-
-
-
-    public void verifyThatShoppingCartIsEmpty(String expectedMessage) {
-        clickOnShoppingCartDropdown();
-        waitUntilElementIsVisible(shoppingCartIsEmptyMessage);
-        assertEquals(expectedMessage, shoppingCartIsEmptyMessage.getText());
-    }
-
-    private List<WebElement> getShoppingCartEmptyMessageElements() {
-        By emptyCartMessageLocator = By.xpath("//p[@class='text-center' and contains(text(),'Your shopping cart is empty!')]");
-        return driver.findElements(emptyCartMessageLocator);
-    }
-
-    private void clickOnShoppingCartDropdown() {
-        clickElement(shoppingCartDropdown);
-    }
-
-    private void removeFromCartUntilEmpty() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        while (true) {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(removeFromCartButton)).click();
-            } catch (TimeoutException e) {
-                break;
-            }
-        }
-    }
+//    private List<WebElement> getShoppingCartEmptyMessageElements() {
+//        By emptyCartMessageLocator = By.xpath("//p[@class='text-center' and contains(text(),'Your shopping cart is empty!')]");
+//        return driver.findElements(emptyCartMessageLocator);
+//    }
 
     private void clickOnSearchBar(){
         clickElement(searchBar);
     }
 
-
-
     public void sortResultsByPriceAscending() {
+
+    }
         // Create a list to store the prices as strings
-        List<String> priceStrings = new ArrayList<>(resultsPriceOption.stream()
-                .map(WebElement::getText)
-                .toList());
-        // Sort the list of price strings in ascending order
-        priceStrings.sort(Comparator.comparingDouble(this::extractPrice));
-
-        // Update the order of WebElement list based on the sorted price strings
-        for (int i = 0; i < resultsPriceOption.size(); i++) {
-            resultsPriceOption.get(i).sendKeys(priceStrings.get(i));
-        }
-
-        }
+//        List<String> priceStrings = new ArrayList<>(resultsPriceOption.stream()
+//                .map(WebElement::getText)
+//                .toList());
+//        // Sort the list of price strings in ascending order
+//        priceStrings.sort(Comparator.comparingDouble(this::extractPrice));
+//
+//        // Update the order of WebElement list based on the sorted price strings
+//        for (int i = 0; i < resultsPriceOption.size(); i++) {
+//            resultsPriceOption.get(i).sendKeys(priceStrings.get(i));
+//        }
+//
+//        }
 
     private double extractPrice(String priceString) {
-
         // Remove leading and trailing whitespaces and then try to parse
         priceString = priceString.trim();
+
+        // Remove any currency symbols or other non-numeric characters
+        priceString = priceString.replace("$", "");
 
         // Handle the case where the string is empty after trimming
         if (priceString.isEmpty()) {
@@ -230,17 +210,16 @@ public class BasePage {
 
         // Attempt to parse the numeric value
         try {
-            return Double.parseDouble(priceString.replace("$", ""));
+            return Double.parseDouble(priceString);
         } catch (NumberFormatException e) {
             // Handle the exception or log an error message
             e.printStackTrace();
             return 0.0; // or throw an exception, depending on your requirements
         }
-    }
 
 
 
-
+        }
 }
 
 

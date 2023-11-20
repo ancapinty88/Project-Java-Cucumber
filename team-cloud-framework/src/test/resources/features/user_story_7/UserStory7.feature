@@ -43,7 +43,7 @@ Feature: User Story 7 Feature
       Then The search button is displayed
 
 
-    @Test3
+    @test3
       Scenario: Search by Name (RegExp)
       Given I am on Home Page
       When I click on search bar
@@ -62,7 +62,7 @@ Feature: User Story 7 Feature
     Then I click on button search
     And Check if word mac is in product description
 
-  @Test5
+  @test5
   Scenario: Search in Subcategories - Product belongs to Parent category
     Given I am on Home Page
     When I click on search button
@@ -72,7 +72,7 @@ Feature: User Story 7 Feature
     And I click on button search
     Then Check if mac is in the name of the results
 
-    @Test6
+    @test6
     Scenario: Search in Subcategories - Product does not belong to Parent category
       Given I am on Home Page
       When I click on search button
@@ -83,7 +83,7 @@ Feature: User Story 7 Feature
       Then Check if there is no results
 
 
-    @Test7
+    @test7
     Scenario: User is able to sort the Products displayed in the Search Results
       Given I am on Home Page
       When Write mac into Search bar

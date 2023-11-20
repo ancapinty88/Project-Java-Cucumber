@@ -75,6 +75,7 @@ public class UserStory7Steps  {
     @When("I click on search button")
     public void iClickOnSearchButton() throws Throwable{
         homePage.clickOnSearchButton();
+        homePage.verifyThatResultsContainsTextIph();
     }
 
     @Then("The search button is displayed")
@@ -140,8 +141,9 @@ public class UserStory7Steps  {
 
     @Then("Select option from the Sort by dropdown")
     public void selectOptionFromTheSortByDropdown() throws Throwable{
-        basePage.getSelectedOption();
-        basePage.sortResultsByPriceAscending();
+        basePage.clickOnSortByList();
+        basePage.clickOnOption4Dropdown();
+        basePage.sortResultsByPriceAscending();//not working
 
     }
 
@@ -150,7 +152,8 @@ public class UserStory7Steps  {
 
     @Then("Select number of products from the Show dropdown")
     public void selectNumberOfProductsFromTheShowDropdown() throws Throwable {
-        basePage.showByValue("50");
+        basePage.clickOnShowProductList();
+        basePage.clickOnOptionShow50();
     }
 
     @When("Write mac into Search bar")
