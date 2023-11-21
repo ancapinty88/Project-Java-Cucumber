@@ -51,12 +51,6 @@ public class SearchPage extends BasePage {
     @FindBy(how = How.ID, using = "tab-description")
     private WebElement description;
 
-//    @FindBy(xpath = "//a[contains(text(),'iph')]")
-//    private List<WebElement> textIph;
-
-
-
-
     @FindBy(how = How.ID, using = "input-sort")
     private WebElement sortBy;
 
@@ -65,7 +59,6 @@ public class SearchPage extends BasePage {
 
     @FindBy(how = How.NAME, using = "category_id")
     private WebElement allCategories;
-
 
     //Methods should be here
 
@@ -87,9 +80,6 @@ public class SearchPage extends BasePage {
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
-
-
-
     public void clickOnSubcategoriesCheckbox(){
         clickElement(SearchSubcategories);
         Assert.assertTrue(SearchSubcategories.isSelected());
@@ -109,47 +99,19 @@ public class SearchPage extends BasePage {
 
 
     public void SearchBarIsDisplayed(){
-//        if (searchBar.isDisplayed()){
-//            System.out.println("Search Bar is displayed.");
-//        } else {
-//            System.out.println("Search Bar is not displayed");
-//        }
         Assert.assertTrue(searchBar.isDisplayed());
-
-
         }
 
     public void SearchButtonIsDisplayed(){
-//        if (searchButton.isDisplayed()){
-//            System.out.println("Search Button is displayed.");
-//        } else {
-//            System.out.println("Search Button is not displayed");
-//        }
-
         Assert.assertTrue(searchButton.isDisplayed());
     }
 
-//    public void enterTextInSearchBar(String searchText) {
-//        WebElement search = waitForElementVisible(By.id("search"));
-//        searchInput.clear();
-//        searchInput.sendKeys(searchText);
-//    }
 
-//not working
-//    public void writeText(String text) {
-//        searchBar.clear();
-//        searchBar.sendKeys(text);
-//    }
-
-//not working
     public void enterText(String text){
         searchBar.click();
         searchBar.sendKeys(text);
 
-        //not working for test3
-//        private WebElement waitForElementVisible(By search) {
-//            return wait.until(ExpectedConditions.visibilityOfElementLocated(search));
-//        }
+
     }
     //working for test4
     public void writeText(String text) {

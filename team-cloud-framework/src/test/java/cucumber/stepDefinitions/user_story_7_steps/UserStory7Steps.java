@@ -30,7 +30,6 @@ public class UserStory7Steps  {
 
     public UserStory7Steps(){
         this.driver = Hooks.driver;
-        //searchPage = PageFactory.initElements(Hooks.driver, SearchPage.class);
         searchPage = PageFactory.initElements(Hooks.driver, SearchPage.class);
         shoppingCartPage = PageFactory.initElements(Hooks.driver, ShoppingCartPage.class);
         checkoutPage = PageFactory.initElements(Hooks.driver, CheckoutPage.class);
@@ -41,16 +40,12 @@ public class UserStory7Steps  {
     public void iAmOnHomePage() throws Throwable {
         driver.get(searchPage.getHomePageUrl());
         searchPage.verifyThatUserIsOnHomePage();
-
     }
-
 
     @When("I click on search bar field")
     public void iClickOnSearchBarField() throws Throwable{
         searchPage.SearchBar();
-
     }
-
 
     @Then("The search bar is displayed")
     public void theSearchBarIsDisplayed() throws Throwable {
@@ -69,12 +64,6 @@ public class UserStory7Steps  {
         checkoutPage.verifyThatUserIsOnCheckoutPage();
 
     }
-
-//    @When("I click on search button")
-//    public void iClickOnSearchButton() throws Throwable{
-//        homePage.clickOnSearchButton();
-//        homePage.verifyThatResultsContainsTextIph();
-//    }
 
     @Then("The search button is displayed")
     public void theSearchButtonIsDisplayed() throws Throwable{
@@ -127,7 +116,6 @@ public class UserStory7Steps  {
 
     @Then("Check if mac is in the name of the results")
     public void checkIfMacIsInTheNameOfTheResults() throws Throwable{
-        //homePage.verifySearchResultsContainKeyword("mac");
         searchPage.verifyThatResultsContainsTextMac();
 
 
