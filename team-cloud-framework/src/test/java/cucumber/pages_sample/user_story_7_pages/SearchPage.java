@@ -1,6 +1,7 @@
 package cucumber.pages_sample.user_story_7_pages;
 
 import cucumber.pages_sample.BasePage;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,18 +13,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static cucumber.stepDefinitions.Hooks.driver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static utils.SeleniumHelper.clickElement;
 import static utils.SeleniumHelper.wait;
 
 
-public class HomePage extends BasePage {
+public class SearchPage extends BasePage {
 
     //WebElements should be here
 
-    public HomePage(WebDriver driver) {
+    public SearchPage(WebDriver driver) {
         super(driver);
     }
 
@@ -73,13 +73,26 @@ public class HomePage extends BasePage {
         return "https://www.demoshop24.com/index.php?route=common/home";
     }
 
+   public static String getSearchPageUrl(){
+        return "https://www.demoshop24.com/index.php?route=product/search";
+   }
+
+   public void verifyThatUserIsOnSearchPage(){
+        String expectedUrl = SearchPage.getSearchPageUrl();
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+   }
+
     public void verifyThatUserIsOnHomePage() {
-        String expectedUrl = HomePage.getHomePageUrl();
+        String expectedUrl = SearchPage.getHomePageUrl();
         assertEquals(expectedUrl, driver.getCurrentUrl());
     }
 
+
+
+
     public void clickOnSubcategoriesCheckbox(){
         clickElement(SearchSubcategories);
+        Assert.assertTrue(SearchSubcategories.isSelected());
     }
 
 
@@ -88,25 +101,32 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnSearchBar(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(searchBar));
         clickElement(searchBar);
     }
 
+
+
     public void SearchBarIsDisplayed(){
-        if (searchBar.isDisplayed()){
-            System.out.println("Search Bar is displayed.");
-        } else {
-            System.out.println("Search Bar is not displayed");
-        }
+//        if (searchBar.isDisplayed()){
+//            System.out.println("Search Bar is displayed.");
+//        } else {
+//            System.out.println("Search Bar is not displayed");
+//        }
+        Assert.assertTrue(searchBar.isDisplayed());
+
 
         }
 
     public void SearchButtonIsDisplayed(){
-        if (searchButton.isDisplayed()){
-            System.out.println("Search Button is displayed.");
-        } else {
-            System.out.println("Search Button is not displayed");
-        }
+//        if (searchButton.isDisplayed()){
+//            System.out.println("Search Button is displayed.");
+//        } else {
+//            System.out.println("Search Button is not displayed");
+//        }
 
+        Assert.assertTrue(searchButton.isDisplayed());
     }
 
 //    public void enterTextInSearchBar(String searchText) {
@@ -141,27 +161,7 @@ public class HomePage extends BasePage {
     private WebElement waitForElementVisible(By search) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(search));
     }
-//not working to check that the list has the word mac
-//    public void verifySearchResultsContainKeyword(String Mac) throws AssertionError {
-//        for (WebElement result: macResults){
-//            String productName = result.getText();
-//            if (!productName.toLowerCase().contains(Mac.toLowerCase())){
-//                throw new AssertionError("The product name '" + productName + "' does not contain the keyword '" + mac + "'");
-//            }
-//        }
-//        System.out.println("All search results contain the keyword '" + mac + "'");
-//    }
 
-//    public void verifySearchResultsContainKeyword(String productName) throws InterruptedException {
-////        List<WebElement> results = driver.findElements((By) macResults);
-////        Thread.sleep(2000);
-////        boolean isProductFound = results.stream()
-////                .map(WebElement::getText)
-////                .anyMatch(resultText -> resultText.contains(productName));
-////        assertTrue("Product not found in search results", isProductFound);
-//
-//    }
-//
 
     public boolean areResultsContainingText(List<WebElement> results, String searchText) {
         for (WebElement result : results) {
@@ -185,9 +185,6 @@ public class HomePage extends BasePage {
         assertEquals(expectedMsg, noResultMsg.getText());
     }
 
-
-
 }
-
 
 

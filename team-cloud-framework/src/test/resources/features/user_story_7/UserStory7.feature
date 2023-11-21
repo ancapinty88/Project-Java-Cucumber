@@ -1,26 +1,24 @@
+
 Feature: User Story 7 Feature
 
-#  @test
-#  Scenario: Scenario 1
-#    When I am on Home Page
-#    Then I click on My Account
+
 
   @test1
-    Scenario: Verify Search Bar is displayed in Home Page, Shopping Cart Page and Checkout Page
+    Scenario: Verify Search Bar is displayed in Home Page
       Given I am on Home Page
-      When I click on shopping bar field
+      When I click on search bar field
       Then The search bar is displayed
 
   @test1
     Scenario: Verify Search Bar is displayed in Shopping Cart Page
       Given I am on Shopping cart page
-      When I click on shopping bar field
+      When I click on search bar field
       Then The search bar is displayed
 
   @test1
     Scenario: Verify Search Bar is displayed in Checkout Page
       Given I am on Checkout page
-      When I click on shopping bar field
+      When I click on search bar field
       Then The search bar is displayed
 
 
@@ -48,7 +46,7 @@ Feature: User Story 7 Feature
       Given I am on Home Page
       When I click on search bar
       And I write iph in the search bar
-      Then I click on search button
+      Then I click on search button and check
 
     #The search results should include products with names matching the regular expression "Iph," such as "iPhone."
     #Other products not matching the regular expression should not be included in the results.
@@ -92,12 +90,37 @@ Feature: User Story 7 Feature
 
 
 
-      @Test8
-      Scenario: User can select how many products can be displayed in the Search Results
-        Given I am on Home Page
-        When Write mac into Search bar
-        And I click on search button
-        Then Select number of products from the Show dropdown
+ @test8
+ Scenario: User can select how many products can be displayed in the Search Results
+   Given I am on Home Page
+   When Write mac into Search bar
+   And I click on search button
+   Then Select number of products from the Show dropdown
 
+
+# Bug No 1
+@test9
+Scenario: The maximum allowed input characters count is 15
+  Given I am on Home Page
+  When Write a text with more than allowed characters
+  And I click on search button
+  Then A message1 should be displayed
+
+
+# Bug No 2
+@test10
+Scenario: Special character like a “, ()!@#$%^* are not allowed(should be truncated)
+  Given I am on Home Page
+  When Write a text with characters that are not allowed
+  And I click on search button
+  Then A message2 should be displayed
+
+# Bug No 3
+@test11
+Scenario: The minimum allowed input characters count is 5
+  Given I am on Home Page
+  When Write a text with less than allowed characters
+  And I click on search button
+  Then A message3 should be displayed
 
 

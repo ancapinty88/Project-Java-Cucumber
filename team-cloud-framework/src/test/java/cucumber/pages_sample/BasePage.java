@@ -89,44 +89,15 @@ public class BasePage {
 
     public void clickOnSortByList() {
         sortByList.click();
+        sortByList.isDisplayed();
     }
     public void clickOnOption4Dropdown(){
         option4Dropdown.click();
+        option4Dropdown.isDisplayed();
     }
-
-//    public WebElement getSelectedOption(){
-//        return option4Dropdown;
-//    }
 
     @FindBy(xpath = "//p[@class='price']")
     private List<WebElement> resultsPriceOption;
-
-//From other story ->
-//
-//    @FindBy(xpath = "//span[.='My Account']")
-//    private WebElement myAccountMenu;
-//
-//    @FindBy(xpath = "//a[text()='Login']")
-//    private WebElement loginFromMyAccountDropdown;
-//
-//    @FindBy(xpath = "//a[text()='My Account']")
-//    private WebElement myAccountFromMyAccountDropdown;
-//
-//    @FindBy(xpath = "//span[text()='Shopping Cart']")
-//    private WebElement shoppingCart;
-//
-//    @FindBy(xpath = "//span[@id='cart-total']")
-//    private WebElement shoppingCartDropdown;
-//
-//    @FindBy(xpath = "//p[@class='text-center']")
-//    private WebElement shoppingCartIsEmptyMessage;
-//
-//    @FindBy(xpath = "//button[@title='Remove']")
-//    private WebElement removeFromCartButton;
-//From other story <-
-
-
-
 
     public void SearchBar() {
         clickElement(searchBar);
@@ -156,71 +127,59 @@ public class BasePage {
 
     public void selectOptionByValue(String value) {
         Select dropdown = new Select(categoryDropdown);
-        dropdown.selectByVisibleText(value);
+        dropdown.selectByValue(value);
     }
-
-//    public void sortByByValue(String value){
-//        WebElement sortByDropdown = dropdown.get(1);
-//        Select dropdown = new Select(sortByDropdown);
-//        dropdown.selectByValue(value);
-//    }
 
     public void showByValue(String value){
         Select dropdown = new Select(showProducts);
         dropdown.selectByValue(value);
     }
 
-//    private List<WebElement> getShoppingCartEmptyMessageElements() {
-//        By emptyCartMessageLocator = By.xpath("//p[@class='text-center' and contains(text(),'Your shopping cart is empty!')]");
-//        return driver.findElements(emptyCartMessageLocator);
-//    }
 
     private void clickOnSearchBar(){
         clickElement(searchBar);
     }
 
-    public void sortResultsByPriceAscending() {
+    public void sortResultsByPriceAscending(String xpath) {
 
+        List<WebElement> priceElements = driver.findElements(By.xpath(xpath));
+
+        // Extract prices as strings
+        List<String> priceStrings = new ArrayList<>();
+        for (WebElement priceElement : priceElements) {
+            priceStrings.add(priceElement.getText());
+        }
+
+        // Convert prices to numeric values
+        List<Double> prices = new ArrayList<>();
+        for (String priceString : priceStrings) {
+            try {
+                // Extract numeric part and convert to double
+                double price = Double.parseDouble(priceString.replaceAll("[^0-9.]", ""));
+                prices.add(price);
+            } catch (NumberFormatException e) {
+                // Handle non-numeric characters
+                System.out.println("Skipping non-numeric price: " + priceString);
+            }
+        }
+
+        // Check if the prices are in ascending order
+        if (!isSortedAscending(prices)) {
+            throw new AssertionError("Prices are NOT in low to high order.");
+        }
     }
-        // Create a list to store the prices as strings
-//        List<String> priceStrings = new ArrayList<>(resultsPriceOption.stream()
-//                .map(WebElement::getText)
-//                .toList());
-//        // Sort the list of price strings in ascending order
-//        priceStrings.sort(Comparator.comparingDouble(this::extractPrice));
-//
-//        // Update the order of WebElement list based on the sorted price strings
-//        for (int i = 0; i < resultsPriceOption.size(); i++) {
-//            resultsPriceOption.get(i).sendKeys(priceStrings.get(i));
-//        }
-//
-//        }
 
-    private double extractPrice(String priceString) {
-        // Remove leading and trailing whitespaces and then try to parse
-        priceString = priceString.trim();
-
-        // Remove any currency symbols or other non-numeric characters
-        priceString = priceString.replace("$", "");
-
-        // Handle the case where the string is empty after trimming
-        if (priceString.isEmpty()) {
-            return 0.0; // or throw an exception, depending on your requirements
+    private static boolean isSortedAscending(List<Double> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) > list.get(i + 1)) {
+                return false;
+            }
         }
-
-        // Attempt to parse the numeric value
-        try {
-            return Double.parseDouble(priceString);
-        } catch (NumberFormatException e) {
-            // Handle the exception or log an error message
-            e.printStackTrace();
-            return 0.0; // or throw an exception, depending on your requirements
-        }
-
-
-
-        }
+        return true;
+    }
 }
+
+
 
 
 

@@ -6,15 +6,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import static org.junit.Assert.assertEquals;
+
 public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver){
         super(driver);
     }
 
-    public String getCheckoutPageUrl(){
-        return "https://www.demoshop24.com/index.php?route=checkout/checkout";
+    public static String getCheckoutPageUrl(){
+        return "https://www.demoshop24.com/index.php?route=checkout/cart";
     }
 
+    public void verifyThatUserIsOnCheckoutPage(){
+        String expectedUrl = CheckoutPage.getCheckoutPageUrl();
+        assertEquals(expectedUrl, driver.getCurrentUrl());
+    }
     @FindBy(how = How.ID, using = "search")
     private WebElement searchBar;
 
