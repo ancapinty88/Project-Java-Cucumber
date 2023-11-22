@@ -15,6 +15,12 @@ public class SeleniumHelper {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    public static void clickElement(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+    }
+
+
     public static void waitUntilElementIsVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
@@ -28,9 +34,6 @@ public class SeleniumHelper {
         element.sendKeys(keysToSend);
     }
 
-    public static void clickElement(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-    }
+
 
 }

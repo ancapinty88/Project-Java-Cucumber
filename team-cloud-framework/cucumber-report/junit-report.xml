@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="110.809" tests="15" skipped="0" failures="3" errors="0">
-<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Home Page" time="16.94">
+<testsuite name="Cucumber" time="67.409" tests="15" skipped="0" failures="3" errors="0">
+<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Home Page" time="7.56">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search bar field............................................passed
 Then The search bar is displayed............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Shopping Cart Page" time="5.161">
+<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Shopping Cart Page" time="4.16">
 <system-out><![CDATA[
 Given I am on Shopping cart page............................................passed
 When I click on search bar field............................................passed
 Then The search bar is displayed............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Checkout Page" time="5.866">
+<testcase classname="User Story 7 Feature" name="Verify Search Bar is displayed in Checkout Page" time="4.642">
 <system-out><![CDATA[
 Given I am on Checkout page.................................................passed
 When I click on search bar field............................................passed
 Then The search bar is displayed............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Home Page" time="4.864">
+<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Home Page" time="4.318">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search button...............................................passed
 Then The search button is displayed.........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Shopping Cart Page" time="5.223">
+<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Shopping Cart Page" time="3.393">
 <system-out><![CDATA[
 Given I am on Shopping cart page............................................passed
 When I click on search button...............................................passed
 Then The search button is displayed.........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Checkout Page" time="5.903">
+<testcase classname="User Story 7 Feature" name="Verify Search Button is displayed in Checkout Page" time="3.373">
 <system-out><![CDATA[
 Given I am on Checkout page.................................................passed
 When I click on search button...............................................passed
 Then The search button is displayed.........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Search by Name (RegExp)" time="8.987">
+<testcase classname="User Story 7 Feature" name="Search by Name (RegExp)" time="4.152">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search bar..................................................passed
@@ -50,7 +50,7 @@ And I write iph in the search bar...........................................pass
 Then I click on search button and check.....................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Search in Product Descriptions" time="7.112">
+<testcase classname="User Story 7 Feature" name="Search in Product Descriptions" time="4.619">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search button...............................................passed
@@ -60,7 +60,7 @@ Then I click on button search...............................................pass
 And Check if word mac is in product description.............................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Search in Subcategories - Product belongs to Parent category" time="7.066">
+<testcase classname="User Story 7 Feature" name="Search in Subcategories - Product belongs to Parent category" time="4.478">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search button...............................................passed
@@ -71,7 +71,7 @@ And I click on button search................................................pass
 Then Check if mac is in the name of the results.............................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Search in Subcategories - Product does not belong to Parent category" time="7.351">
+<testcase classname="User Story 7 Feature" name="Search in Subcategories - Product does not belong to Parent category" time="4.441">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When I click on search button...............................................passed
@@ -82,7 +82,7 @@ And I click on button search................................................pass
 Then Check if there is no results...........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="User is able to sort the Products displayed in the Search Results" time="6.788">
+<testcase classname="User Story 7 Feature" name="User is able to sort the Products displayed in the Search Results" time="4.889">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When Write mac into Search bar..............................................passed
@@ -90,7 +90,7 @@ And I click on search button................................................pass
 Then Select option from the Sort by dropdown................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="User can select how many products can be displayed in the Search Results" time="7.254">
+<testcase classname="User Story 7 Feature" name="User can select how many products can be displayed in the Search Results" time="4.639">
 <system-out><![CDATA[
 Given I am on Home Page.....................................................passed
 When Write mac into Search bar..............................................passed
@@ -98,13 +98,13 @@ And I click on search button................................................pass
 Then Select number of products from the Show dropdown.......................passed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="The maximum allowed input characters count is 15" time="7.496">
+<testcase classname="User Story 7 Feature" name="The maximum allowed input characters count is 15" time="3.957">
 <failure type="org.junit.ComparisonFailure" message="expected:&lt;[The maximum allowed input characters count is 15]&gt; but was:&lt;[]&gt;">
 <![CDATA[org.junit.ComparisonFailure: expected:<[The maximum allowed input characters count is 15]> but was:<[]>
 	at org.junit.Assert.assertEquals(Assert.java:117)
 	at org.junit.Assert.assertEquals(Assert.java:146)
-	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.aMessage1ShouldBeDisplayed(UserStory7Steps.java:182)
-	at ✽.A message1 should be displayed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:107)
+	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.aMessage1ShouldBeDisplayed(UserStory7Steps.java:165)
+	at ✽.A message1 should be displayed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:84)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -114,14 +114,14 @@ And I click on search button................................................pass
 Then A message1 should be displayed.........................................failed
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="Special character like a “, ()!@#$%^* are not allowed(should be truncated)" time="6.149">
+<testcase classname="User Story 7 Feature" name="Special character like a “, ()!@#$%^* are not allowed(should be truncated)" time="3.952">
 <failure type="org.junit.ComparisonFailure" message="expected:&lt;...com/index.php?route=[product/search]&gt; but was:&lt;...com/index.php?route=[common/home]&gt;">
 <![CDATA[org.junit.ComparisonFailure: expected:<...com/index.php?route=[product/search]> but was:<...com/index.php?route=[common/home]>
 	at org.junit.Assert.assertEquals(Assert.java:117)
 	at org.junit.Assert.assertEquals(Assert.java:146)
-	at cucumber.pages_sample.user_story_7_pages.SearchPage.verifyThatUserIsOnSearchPage(SearchPage.java:82)
-	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.writeATextWithCharactersThatAreNotAllowed(UserStory7Steps.java:199)
-	at ✽.Write a text with characters that are not allowed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:114)
+	at cucumber.pages_sample.user_story_7_pages.SearchPage.verifyThatUserIsOnSearchPage(SearchPage.java:75)
+	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.writeATextWithCharactersThatAreNotAllowed(UserStory7Steps.java:182)
+	at ✽.Write a text with characters that are not allowed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:89)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -131,13 +131,13 @@ And I click on search button................................................skip
 Then A message2 should be displayed.........................................skipped
 ]]></system-out>
 </testcase>
-<testcase classname="User Story 7 Feature" name="The minimum allowed input characters count is 5" time="6.369">
+<testcase classname="User Story 7 Feature" name="The minimum allowed input characters count is 5" time="4.116">
 <failure type="org.junit.ComparisonFailure" message="expected:&lt;[The minimum allowed input characters count is 5]&gt; but was:&lt;[]&gt;">
 <![CDATA[org.junit.ComparisonFailure: expected:<[The minimum allowed input characters count is 5]> but was:<[]>
 	at org.junit.Assert.assertEquals(Assert.java:117)
 	at org.junit.Assert.assertEquals(Assert.java:146)
-	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.aMessage3ShouldBeDisplayed(UserStory7Steps.java:217)
-	at ✽.A message3 should be displayed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:124)
+	at cucumber.stepDefinitions.user_story_7_steps.UserStory7Steps.aMessage3ShouldBeDisplayed(UserStory7Steps.java:200)
+	at ✽.A message3 should be displayed(file:///Users/macbook/Desktop/Bootcamp/TeamCloud/team-cloud-framework/src/test/resources/features/user_story_7/UserStory7.feature:98)
 ]]>
 </failure>
 <system-out><![CDATA[

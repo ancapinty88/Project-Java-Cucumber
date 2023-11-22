@@ -2,7 +2,6 @@ package cucumber.pages_sample;
 
 import cucumber.stepDefinitions.Hooks;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +13,9 @@ import utils.SeleniumHelper;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static utils.SeleniumHelper.*;
+import static utils.SeleniumHelper.clickElement;
 
 public class BasePage {
 
@@ -79,11 +75,11 @@ public class BasePage {
     private WebElement iphResults;
 
 
-    public void clickOnOptionShow50(){
+    public void clickOnOptionShow50() {
         optionShow50.click();
     }
 
-    public void clickOnShowProductList(){
+    public void clickOnShowProductList() {
         showProducts.click();
     }
 
@@ -91,7 +87,8 @@ public class BasePage {
         sortByList.click();
         sortByList.isDisplayed();
     }
-    public void clickOnOption4Dropdown(){
+
+    public void clickOnOption4Dropdown() {
         option4Dropdown.click();
         option4Dropdown.isDisplayed();
     }
@@ -104,21 +101,22 @@ public class BasePage {
         //searchBar.sendKeys(text);
     }
 
-    public void clickOnSearchButton(){
+    public void clickOnSearchButton() {
         clickElement(searchButton);
     }
 
     //search in the page after homepage, second search
-    public void clickOnButtonSearch(){
+    public void clickOnButtonSearch() {
         clickElement(buttonSearch);
     }
 
-    public void clickSearchCategories(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement categoriesCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("sub_category")));
-        clickElement(searchSubcategories);
-    }
-    public void clickSearchProductDescription(){
+//    public void clickSearchCategories() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement categoriesCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("sub_category")));
+//        clickElement(searchSubcategories);
+//    }
+
+    public void clickSearchProductDescription() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement productDescriptionCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("description")));
         clickElement(searchProductDescription);
@@ -130,13 +128,13 @@ public class BasePage {
         dropdown.selectByValue(value);
     }
 
-    public void showByValue(String value){
+    public void showByValue(String value) {
         Select dropdown = new Select(showProducts);
         dropdown.selectByValue(value);
     }
 
 
-    private void clickOnSearchBar(){
+    private void clickOnSearchBar() {
         clickElement(searchBar);
     }
 
